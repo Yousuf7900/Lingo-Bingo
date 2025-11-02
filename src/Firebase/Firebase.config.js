@@ -2,12 +2,12 @@ import { getAuth } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAO80vJ4tYDUzU-_IK9-sMu4t5xxKy-1Gw",
-    authDomain: "lingo-bingo-e3d4e.firebaseapp.com",
-    projectId: "lingo-bingo-e3d4e",
-    storageBucket: "lingo-bingo-e3d4e.firebasestorage.app",
-    messagingSenderId: "725725429453",
-    appId: "1:725725429453:web:ba7433e9adaecf9a26b384"
+    apiKey: import.meta.env.VITE_apiKey,
+    authDomain: import.meta.env.VITE_authDomain,
+    projectId: import.meta.env.VITE_projectId,
+    storageBucket: import.meta.env.VITE_storageBucket,
+    messagingSenderId: import.meta.env.VITE_messagingSenderId,
+    appId: import.meta.env.VITE_appId
 };
 
 const app = initializeApp(firebaseConfig);
