@@ -11,6 +11,7 @@ import Signup from './Pages/Signup'
 import StartLearning from './Pages/StartLearning'
 import Tutorials from './Pages/Tutorials'
 import AboutUs from './Pages/AboutUs'
+import AuthProvider from './AuthProvider/AuthProvider'
 
 const router = createBrowserRouter(
   [
@@ -50,6 +51,8 @@ const router = createBrowserRouter(
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <AuthProvider>
+      <RouterProvider router={router}></RouterProvider>
+    </AuthProvider>
   </StrictMode>,
 )
