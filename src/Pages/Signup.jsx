@@ -1,13 +1,14 @@
 
 import { useContext } from "react";
 import { FaGoogle, FaFacebookF } from "react-icons/fa";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import { GoogleAuthProvider } from "firebase/auth";
 
 const Signup = () => {
-    const { createNewUser, signInWithGoogle } = useContext(AuthContext);
-
+    const navigate = useNavigate();
+    const location = useLocation();
+    const { createNewUser, signInWithGoogle, setUser } = useContext(AuthContext);
     const handleSignUp = (e) => {
         e.preventDefault();
         // const name = e.target.name.value;
@@ -18,7 +19,8 @@ const Signup = () => {
 
         createNewUser(email, password)
             .then(response => {
-                console.log(response.user);
+                setUser(response.user);
+                navigate(location?.state ? location.state : "/");
             })
     }
 
@@ -26,7 +28,8 @@ const Signup = () => {
     const handleGoogleSignUp = () => {
         signInWithGoogle(provider)
             .then(response => {
-                console.log(response.user);
+                setUser(response.user);
+                navigate(location?.state ? location.state : "/");
             })
     }
     return (

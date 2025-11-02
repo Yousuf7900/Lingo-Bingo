@@ -12,6 +12,9 @@ import StartLearning from './Pages/StartLearning'
 import Tutorials from './Pages/Tutorials'
 import AboutUs from './Pages/AboutUs'
 import AuthProvider from './AuthProvider/AuthProvider'
+import PrivateRoute from './PrivateRoute/PrivateRoute'
+import Profile from './Pages/Profile'
+import Content from './Pages/Content'
 
 const router = createBrowserRouter(
   [
@@ -38,11 +41,20 @@ const router = createBrowserRouter(
         },
         {
           path: '/tutorials',
-          element: <Tutorials></Tutorials>
+          element: <PrivateRoute><Tutorials></Tutorials></PrivateRoute>
         },
         {
           path: '/about-us',
           element: <AboutUs></AboutUs>
+        },
+        {
+          path: "/profile",
+          element: <PrivateRoute><Profile></Profile></PrivateRoute>
+        },
+        {
+          path: '/lesson/:id',
+          loader: () => fetch("public/japanese_data.json"),
+          element: <PrivateRoute><Content></Content></PrivateRoute>
         }
       ]
     }

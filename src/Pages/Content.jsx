@@ -1,5 +1,5 @@
 
-const ForgotPassword = () => {
+const Content = () => {
     return (
         <div>
             
@@ -7,4 +7,4 @@ const ForgotPassword = () => {
     );
 };
 
-export default ForgotPassword;
+export default Content;

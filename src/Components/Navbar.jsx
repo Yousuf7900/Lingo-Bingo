@@ -1,10 +1,18 @@
+import { useContext } from "react";
 import { Link } from "react-router";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Navbar = () => {
-    const links = <>
+    const { user, logOut } = useContext(AuthContext);
+    const Public_links = <>
         <li><Link to={'/'}>Home</Link></li>
         <li><Link to={'/start-learning'}>Start Learning</Link></li>
-        <li><Link to={'/tutorials'}>Tutorials</Link></li>
+        <li><Link to={'/about-us'}>About Us</Link></li>
+    </>
+    const Private_links = <>
+        <li><Link to={'/'}>Home</Link></li>
+        <li><Link to={'/start-learning'}>Start Learning</Link></li>
+        <li><Link to={'/tutorials'}>Tutorial</Link></li>
         <li><Link to={'/about-us'}>About Us</Link></li>
     </>
     return (
@@ -18,20 +26,50 @@ const Navbar = () => {
                         <ul
                             tabIndex="-1"
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                            {links}
+                            {
+                                user && user?.email ? Private_links : Public_links
+                            }
                         </ul>
                     </div>
-                    {/* <a className="btn btn-ghost text-xl">Lingo-Bingo</a> */}
                     <Link to={'/'} className="btn btn-ghost text-xl">Lingo-Bingo</Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
-                        {links}
+                        {
+                            user && user?.email ? Private_links : Public_links
+                        }
                     </ul>
                 </div>
+
                 <div className="navbar-end">
-                    <Link to={'/login'}><button className="btn">Login</button></Link>
+                    {user && user?.email ? (
+                        <div className="flex items-center gap-3">
+                            <div className="flex items-center gap-2">
+                                {user.photoURL ? (
+                                    <img
+                                        src={user.photoURL}
+                                        alt="User Avatar"
+                                        className="w-10 h-10 rounded-full border-2 border-blue-500 object-cover"
+                                    />
+                                ) : (
+                                    <div className="w-9 h-9 rounded-full bg-gray-300 flex items-center justify-center text-gray-700 font-semibold">
+                                        {user.email[0].toUpperCase()}
+                                    </div>
+                                )}
+                            </div>
+                            <button onClick={logOut} className="btn btn-sm bg-red-500 text-white hover:bg-red-600">
+                                Logout
+                            </button>
+                        </div>
+                    ) : (
+                        <Link to="/login">
+                            <button className="btn btn-sm bg-blue-600 text-white hover:bg-blue-700">
+                                Login
+                            </button>
+                        </Link>
+                    )}
                 </div>
+
             </div>
         </div>
     );
