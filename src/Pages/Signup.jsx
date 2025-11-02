@@ -3,9 +3,11 @@ import { useContext } from "react";
 import { FaGoogle, FaFacebookF } from "react-icons/fa";
 import { Link } from "react-router";
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import { GoogleAuthProvider } from "firebase/auth";
 
 const Signup = () => {
-    const { createNewUser } = useContext(AuthContext);
+    const { createNewUser, signInWithGoogle } = useContext(AuthContext);
+
     const handleSignUp = (e) => {
         e.preventDefault();
         // const name = e.target.name.value;
@@ -18,7 +20,14 @@ const Signup = () => {
             .then(response => {
                 console.log(response.user);
             })
+    }
 
+    const provider = new GoogleAuthProvider();
+    const handleGoogleSignUp = () => {
+        signInWithGoogle(provider)
+            .then(response => {
+                console.log(response.user);
+            })
     }
     return (
         <div className="min-h-screen flex items-start justify-center bg-gradient-to-r from-blue-50 to-white px-4 pt-20">
@@ -88,7 +97,7 @@ const Signup = () => {
                 </div>
 
                 <div className="flex gap-4 justify-center">
-                    <button className="flex items-center gap-2 px-6 py-2 rounded-xl border border-gray-300 hover:bg-gray-100 transition">
+                    <button onClick={handleGoogleSignUp} className="flex items-center gap-2 px-6 py-2 rounded-xl border border-gray-300 hover:bg-gray-100 transition">
                         <FaGoogle className="text-red-500" /> Google
                     </button>
                     <button className="flex items-center gap-2 px-6 py-2 rounded-xl border border-gray-300 hover:bg-gray-100 transition">
