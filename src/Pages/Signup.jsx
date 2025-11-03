@@ -14,6 +14,7 @@ const Signup = () => {
     const handleSignUp = (e) => {
         e.preventDefault();
         setError("");
+
         const name = e.target.name.value;
         const photo_url = e.target.photo_url.value;
         const email = e.target.email.value;
@@ -21,25 +22,41 @@ const Signup = () => {
         const checked = e.target.terms.checked;
 
         if (!checked) {
-            setError("You must agree to the Terms & Conditions before signing up.");
+            setError("You must agree to the Terms & Conditions.");
+            return;
+        }
+
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+        if (!passwordRegex.test(password)) {
+            setError(
+                "Password must be at least 6 characters, with 1 uppercase and 1 lowercase letter."
+            );
             return;
         }
 
         createNewUser(email, password)
-            .then((response) => {
-                updateProfileInfo(response.user, {
-                    displayName: name,
-                    photoURL: photo_url,
-                })
-                    .then(() => {
-                        setUser({
-                            ...response.user,
-                            displayName: name,
-                            photoURL: photo_url,
-                        });
-                        navigate(location?.state ? location.state : "/");
-                    })
-                    .catch((err) => setError(err.message));
+            .then(async (res) => {
+                try {
+                    await updateProfileInfo(res.user, {
+                        displayName: name,
+                        photoURL: photo_url,
+                    });
+
+                    const updatedUser = {
+                        ...res.user,
+                        displayName: name,
+                        photoURL: photo_url,
+                    };
+
+                    setUser(updatedUser);
+
+                    // Save only for email/password users
+                    localStorage.setItem("userProfile", JSON.stringify(updatedUser));
+
+                    navigate(location?.state || "/");
+                } catch (err) {
+                    setError(err.message);
+                }
             })
             .catch((err) => setError(err.message));
     };
@@ -48,8 +65,9 @@ const Signup = () => {
     const handleGoogleSignUp = () => {
         signInWithGoogle(provider)
             .then((response) => {
+                // Google login: no localStorage
                 setUser(response.user);
-                navigate(location?.state ? location.state : "/");
+                navigate(location?.state || "/");
             })
             .catch((err) => setError(err.message));
     };
@@ -111,9 +129,7 @@ const Signup = () => {
                     </label>
 
                     {error && (
-                        <span className="text-sm text-red-500 font-medium -mt-3">
-                            {error}
-                        </span>
+                        <span className="text-sm text-red-500 font-medium -mt-3">{error}</span>
                     )}
 
                     <button
@@ -136,9 +152,6 @@ const Signup = () => {
                         className="flex items-center gap-2 px-6 py-2 rounded-xl border border-gray-300 hover:bg-gray-100 transition"
                     >
                         <FaGoogle className="text-red-500" /> Google
-                    </button>
-                    <button className="flex items-center gap-2 px-6 py-2 rounded-xl border border-gray-300 hover:bg-gray-100 transition">
-                        <FaFacebookF className="text-blue-600" /> Facebook
                     </button>
                 </div>
 

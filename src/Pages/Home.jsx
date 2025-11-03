@@ -6,9 +6,14 @@ import LearningPath from '../Components/LearningPath';
 import { useContext, useEffect } from 'react';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import { toast } from 'react-toastify';
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 
 const Home = () => {
+    useEffect(() => {
+        AOS.init({ duration: 1000, once: true });
+    }, []);
     const { user } = useContext(AuthContext);
     useEffect(() => {
         if (user) {
@@ -32,22 +37,23 @@ const Home = () => {
     return (
         <div>
             <main>
-                <section className="banner">
-                    <Banner></Banner>
+                <section className="banner" data-aos="fade-up">
+                    <Banner />
                 </section>
-                <section className="about">
-                    <About></About>
+                <section className="about" data-aos="fade-left">
+                    <About />
                 </section>
-                <section className="success">
-                    <Success></Success>
+                <section className="success" data-aos="fade-right">
+                    <Success />
                 </section>
-                <section className="why_learn">
-                    <WhyLearn></WhyLearn>
+                <section className="why_learn" data-aos="zoom-in">
+                    <WhyLearn />
                 </section>
-                <section className="learning_pah">
-                    <LearningPath></LearningPath>
+                <section className="learning_path" data-aos="fade-up">
+                    <LearningPath />
                 </section>
             </main>
+
         </div>
     );
 };

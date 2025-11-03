@@ -18,6 +18,7 @@ import Lessons from './Pages/Lessons'
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import UpdateProfile from './Components/UpdateProfile'
+import ForgotPassword from './Pages/ForgotPassword'
 
 const router = createBrowserRouter(
   [
@@ -63,6 +64,10 @@ const router = createBrowserRouter(
         {
           path: '/updateProfile',
           element: <PrivateRoute><UpdateProfile></UpdateProfile></PrivateRoute>
+        },
+        {
+          path: '/forgot-password',
+          element: <ForgotPassword></ForgotPassword>
         }
       ]
     }

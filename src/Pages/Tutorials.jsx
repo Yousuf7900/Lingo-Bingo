@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 
 const Tutorials = () => {
 
@@ -24,6 +25,16 @@ const Tutorials = () => {
         },
         {
             id: 5,
+            title: "Real‑Life Japanese Practice! Osaka Walk‑and‑Talk with @YUYUの日本語Podcast",
+            src: "https://www.youtube.com/embed/OPJlI65cPGE",
+        },
+        {
+            id: 6,
+            title: "Real‑Life Japanese Practice! Osaka Walk‑and‑Talk with @YUYUの日本語Podcast",
+            src: "https://www.youtube.com/embed/OPJlI65cPGE",
+        },
+        {
+            id: 7,
             title: "Real‑Life Japanese Practice! Osaka Walk‑and‑Talk with @YUYUの日本語Podcast",
             src: "https://www.youtube.com/embed/OPJlI65cPGE",
         },
@@ -58,6 +69,12 @@ const Tutorials = () => {
                     </div>
                 ))}
             </div>
+            <Link to={'/start-learning'}>
+                <button className="mt-12 mx-auto block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
+                    Learn Vocabularies
+                </button>
+            </Link>
+
         </div>
     );
 };
