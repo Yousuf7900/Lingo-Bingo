@@ -17,6 +17,7 @@ import Profile from './Pages/Profile'
 import Lessons from './Pages/Lessons'
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import UpdateProfile from './Components/UpdateProfile'
 
 const router = createBrowserRouter(
   [
@@ -57,6 +58,10 @@ const router = createBrowserRouter(
           path: '/lesson/:id',
           loader: () => fetch("public/japanese_data.json"),
           element: <PrivateRoute><Lessons></Lessons></PrivateRoute>
+        },
+        {
+          path: '/updateProfile',
+          element: <PrivateRoute><UpdateProfile></UpdateProfile></PrivateRoute>
         }
       ]
     }

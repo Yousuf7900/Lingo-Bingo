@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import { Link } from "react-router";
 
 const Profile = () => {
     const { user } = useContext(AuthContext);
@@ -28,12 +29,12 @@ const Profile = () => {
                         </div>
                     </div>
 
-                    <button
-                        className="mt-8 w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
-                        onClick={() => alert("Redirect to update profile page")}
-                    >
-                        Update Profile
-                    </button>
+                    <Link to={'/updateProfile'}>
+                        <button
+                            className="mt-8 w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+                            Update Profile
+                        </button>
+                    </Link>
                 </div> : ""
             }
         </div>
