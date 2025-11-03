@@ -3,7 +3,11 @@
 ## 🌟 Project Overview
 **Lingo Bingo** is a fun and interactive language learning web application designed to help users expand their vocabulary and improve communication skills in a chosen language. The app provides structured lessons, vocabulary cards, tutorials, and interactive features to make learning easier and engaging.  
 
-This project is built using **React**, **Firebase**, and **Tailwind CSS**, with full support for authentication, responsive design, and private routes.
+The whole website is in **English**, but the vocabulary content is in a selected language (e.g., Japanese, Spanish, French).  
+
+This project is built using **React**, **Firebase**, and **Tailwind CSS**, with full support for authentication, responsive design, and private routes.  
+
+You can check the **live demo** [here](https://lingo-bingo-e3d4e.web.app/) or view the **source code on GitHub** [here](https://github.com/Yousuf7900/Lingo-Bingo).
 
 ---
 
@@ -22,7 +26,7 @@ This project is built using **React**, **Firebase**, and **Tailwind CSS**, with 
 - Private routes for lessons, tutorials, and user profile
 
 ### Lessons & Vocabulary
-- Structured **lessons** (Lesson 1-10) with vocabulary cards
+- Structured **lessons** with vocabulary cards
 - Cards display:
   - Word
   - Meaning
