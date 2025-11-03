@@ -1,8 +1,9 @@
 import { useContext } from "react";
-import { Link } from "react-router";
+import { Link, useParams } from "react-router";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Navbar = () => {
+    const { id } = useParams();
     const { user, logOut } = useContext(AuthContext);
     const Public_links = <>
         <li><Link to={'/'}>Home</Link></li>
@@ -12,7 +13,7 @@ const Navbar = () => {
     const Private_links = <>
         <li><Link to={'/'}>Home</Link></li>
         <li><Link to={'/start-learning'}>Start Learning</Link></li>
-        <li><Link to={'/tutorials'}>Tutorial</Link></li>
+        <li><Link to={"/tutorials"}>Tutorial</Link></li>
         <li><Link to={'/about-us'}>About Us</Link></li>
     </>
 

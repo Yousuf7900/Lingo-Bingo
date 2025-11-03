@@ -1,7 +1,11 @@
 
-import aboutImg from "../assets/about_section.jpg"; 
+import { useContext } from "react";
+import aboutImg from "../assets/about_section.jpg";
+import { AuthContext } from "../AuthProvider/AuthProvider";
+import { Link } from "react-router";
 
 const AboutUs = () => {
+    const { user } = useContext(AuthContext);
     return (
         <div className="bg-gray-50 text-gray-800">
             <section className="relative bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-16 px-6 text-center">
@@ -77,16 +81,13 @@ const AboutUs = () => {
                         Ready to boost your language skills? Start learning with us today and unlock a world
                         of new opportunities.
                     </p>
-                    <a
-                        href="/signup"
-                        className="inline-block bg-white text-blue-700 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition"
-                    >
-                        Get Started
-                    </a>
+
+                    {
+                        user && user?.email ? <Link className="inline-block bg-white text-blue-700 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition" to={"/start-learning"}>Get Started</Link> : <Link className="inline-block bg-white text-blue-700 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition" to={"/signup"}>Get Started</Link>
+                    }
                 </div>
             </section>
         </div>
     );
 };
-
 export default AboutUs;

@@ -40,10 +40,12 @@ const router = createBrowserRouter(
         },
         {
           path: '/start-learning',
+          loader: () => fetch("/japanese_data.json"),
           element: <StartLearning></StartLearning>
         },
         {
           path: '/tutorials',
+          loader: () => fetch("/japanese_data.json"),
           element: <PrivateRoute><Tutorials></Tutorials></PrivateRoute>
         },
         {
@@ -55,8 +57,7 @@ const router = createBrowserRouter(
           element: <PrivateRoute><Profile></Profile></PrivateRoute>
         },
         {
-          path: '/lesson/:id',
-          loader: () => fetch("public/japanese_data.json"),
+          path: '/tutorials/:id',
           element: <PrivateRoute><Lessons></Lessons></PrivateRoute>
         },
         {
