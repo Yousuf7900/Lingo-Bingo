@@ -1,16 +1,58 @@
-# React + Vite
+# Lingo Bingo - A Vocabulary Learning Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🌟 Project Overview
+**Lingo Bingo** is a fun and interactive language learning web application designed to help users expand their vocabulary and improve communication skills in a chosen language. The app provides structured lessons, vocabulary cards, tutorials, and interactive features to make learning easier and engaging.  
 
-Currently, two official plugins are available:
+This project is built using **React**, **Firebase**, and **Tailwind CSS**, with full support for authentication, responsive design, and private routes.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🎯 Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### General
+- Fully **responsive design** for mobile, tablet, and desktop
+- Unique layout and colorful, difficulty-based vocabulary cards
+- Animated statistics and sections using **AOS** and **React CountUp**
+- Hosted online on **Firebase Hosting**
 
-## Expanding the ESLint configuration
+### Authentication
+- **Email & Password login** with validation
+- **Google OAuth Login**
+- Forgot password functionality
+- Private routes for lessons, tutorials, and user profile
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Lessons & Vocabulary
+- Structured **lessons** (Lesson 1-10) with vocabulary cards
+- Cards display:
+  - Word
+  - Meaning
+  - Pronunciation
+  - Part of speech
+  - Difficulty (color-coded)
+- “When to say” button opens a modal with example usage
+- Users can hear vocabulary pronunciation via text-to-speech
+
+### Tutorials
+- Embedded **YouTube videos** to learn the selected language
+- “View More” button navigates to full tutorial page
+
+### User Profile
+- View user profile (name, email, photo)
+- Update profile information (photo URL & name)
+
+### Extra Features
+- Custom banners and sliders
+- About section explaining the project
+- Success stats animated with **react-countup**
+- 404 error page for invalid routes
+- Two additional sections designed creatively to enhance UI
+
+---
+
+## 💻 Tech Stack
+- **Frontend:** React, Tailwind CSS
+- **Routing:** React Router DOM
+- **Authentication & Database:** Firebase Auth & Firestore
+- **Animations:** AOS, Animate.css
+- **Notifications:** React Toastify
+- **Hosting:** Firebase Hosting
