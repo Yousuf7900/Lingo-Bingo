@@ -1,38 +1,57 @@
-
 import { useContext } from "react";
 import { FaGoogle, FaFacebookF } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import { GoogleAuthProvider } from "firebase/auth";
+import { toast } from "react-toastify";
 
 const Login = () => {
-    const { signInWithGoogle, user, setUser, signIn } = useContext(AuthContext);
+    const { signInWithGoogle, setUser, signIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
+
     const handleSignInWithEmailAndPassword = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
+
         signIn(email, password)
-            .then(response => {
+            .then((response) => {
                 setUser(response.user);
                 navigate(location?.state ? location.state : "/");
             })
-    }
+            .catch((error) => {
+                toast.error(error.message || "Login failed. Please check your credentials.", {
+                    position: "top-center",
+                    autoClose: 3000,
+                    theme: "colored",
+                });
+            });
+    };
+
     const provider = new GoogleAuthProvider();
     const handleGoogleSignIn = () => {
         signInWithGoogle(provider)
-            .then(response => {
+            .then((response) => {
                 setUser(response.user);
                 navigate(location?.state ? location.state : "/");
             })
-    }
+            .catch((error) => {
+                toast.error(error.message || "Google sign-in failed. Try again later.", {
+                    position: "top-center",
+                    autoClose: 3000,
+                    theme: "colored",
+                });
+            });
+    };
+
     return (
         <div className="min-h-screen flex items-start justify-center bg-gradient-to-r from-blue-50 to-white px-4 pt-20">
             <div className="max-w-md w-full bg-white p-10 rounded-2xl shadow-2xl hover:shadow-3xl transition-shadow duration-500">
                 <h2 className="text-4xl font-extrabold text-center text-gray-800 mb-8">
                     Login
                 </h2>
+
                 <form onSubmit={handleSignInWithEmailAndPassword} className="flex flex-col gap-5">
                     <div className="flex flex-col">
                         <label className="text-gray-700 mb-2 font-medium">Email</label>
@@ -78,7 +97,10 @@ const Login = () => {
                 </div>
 
                 <div className="flex gap-4 justify-center">
-                    <button onClick={handleGoogleSignIn} className="flex items-center gap-2 px-6 py-2 rounded-xl border border-gray-300 hover:bg-gray-100 transition">
+                    <button
+                        onClick={handleGoogleSignIn}
+                        className="flex items-center gap-2 px-6 py-2 rounded-xl border border-gray-300 hover:bg-gray-100 transition"
+                    >
                         <FaGoogle className="text-red-500" /> Google
                     </button>
                     <button className="flex items-center gap-2 px-6 py-2 rounded-xl border border-gray-300 hover:bg-gray-100 transition">

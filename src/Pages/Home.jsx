@@ -14,7 +14,7 @@ const Home = () => {
         if (user) {
             const hasShown = localStorage.getItem("welcomeMessage");
             if (!hasShown) {
-                toast.success(`Welcome back, ${user.displayName || "user"}!`, {
+                toast.success(`Welcome back, ${user.displayName || user.email}!`, {
                     position: "top-center",
                     autoClose: 4000,
                     hideProgressBar: true,
