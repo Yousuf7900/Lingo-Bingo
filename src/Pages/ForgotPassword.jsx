@@ -1,12 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import { toast } from "react-toastify";
 
 const ForgotPassword = () => {
     const { emailForReset, resetPasswordWithEmail } = useContext(AuthContext);
     const [email, setEmail] = useState("");
-    const navigate = useNavigate();
 
     useEffect(() => {
         if (emailForReset) setEmail(emailForReset);
@@ -24,7 +23,7 @@ const ForgotPassword = () => {
                     hideProgressBar: true,
                     theme: "colored",
                 });
-                navigate('/login');
+                window.location.href = "https://mail.google.com/";
             })
             .catch((err) => {
                 toast.error(err.message || "Something went wrong.", {
