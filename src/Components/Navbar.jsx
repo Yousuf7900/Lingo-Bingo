@@ -15,6 +15,11 @@ const Navbar = () => {
         <li><Link to={'/tutorials'}>Tutorial</Link></li>
         <li><Link to={'/about-us'}>About Us</Link></li>
     </>
+
+    const handleLogOut = () => {
+        logOut();
+        localStorage.removeItem("welcomeMessage");
+    }
     return (
         <div>
             <div className="navbar bg-base-100 shadow-sm">
@@ -44,20 +49,22 @@ const Navbar = () => {
                 <div className="navbar-end">
                     {user && user?.email ? (
                         <div className="flex items-center gap-3">
-                            <div className="flex items-center gap-2">
-                                {user.photoURL ? (
-                                    <img
-                                        src={user.photoURL}
-                                        alt="User Avatar"
-                                        className="w-10 h-10 rounded-full border-2 border-blue-500 object-cover"
-                                    />
-                                ) : (
-                                    <div className="w-9 h-9 rounded-full bg-gray-300 flex items-center justify-center text-gray-700 font-semibold">
-                                        {user.email[0].toUpperCase()}
-                                    </div>
-                                )}
-                            </div>
-                            <button onClick={logOut} className="btn btn-sm bg-red-500 text-white hover:bg-red-600">
+                            <Link to={'/profile'}>
+                                <div className="flex items-center gap-2">
+                                    {user.photoURL ? (
+                                        <img
+                                            src={user.photoURL}
+                                            alt="User Avatar"
+                                            className="w-10 h-10 rounded-full border-2 border-blue-500 object-cover"
+                                        />
+                                    ) : (
+                                        <div className="w-9 h-9 rounded-full bg-gray-300 flex items-center justify-center text-gray-700 font-semibold">
+                                            {user.email[0].toUpperCase()}
+                                        </div>
+                                    )}
+                                </div>
+                            </Link>
+                            <button onClick={handleLogOut} className="btn btn-sm bg-red-500 text-white hover:bg-red-600">
                                 Logout
                             </button>
                         </div>

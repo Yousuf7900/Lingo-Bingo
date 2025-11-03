@@ -1,7 +1,11 @@
+import { Link } from "react-router";
 import about_section from "../assets/about_section.jpg";
 import { motion } from "framer-motion";
+import { useContext } from "react";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const About = () => {
+    const { user } = useContext(AuthContext);
     return (
         <section className="w-full bg-gray-50 py-20 px-6 md:px-16">
             <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
@@ -37,9 +41,14 @@ const About = () => {
                         quizzes, and learning paths. Improve your communication skills
                         and become confident in your target language.
                     </p>
-                    <button className="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition transform hover:-translate-y-1">
-                        Get Started
-                    </button>
+                    {
+                        user && user?.email ? <Link to={'/start-learning'}><button className="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition transform hover:-translate-y-1">
+                            Get Started
+                        </button></Link> : <Link to={'/signup'}><button className="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition transform hover:-translate-y-1">
+                            Get Started
+                        </button></Link>
+                    }
+
                 </motion.div>
             </div>
         </section>

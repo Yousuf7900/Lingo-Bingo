@@ -14,7 +14,9 @@ import AboutUs from './Pages/AboutUs'
 import AuthProvider from './AuthProvider/AuthProvider'
 import PrivateRoute from './PrivateRoute/PrivateRoute'
 import Profile from './Pages/Profile'
-import Content from './Pages/Content'
+import Lessons from './Pages/Lessons'
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter(
   [
@@ -54,7 +56,7 @@ const router = createBrowserRouter(
         {
           path: '/lesson/:id',
           loader: () => fetch("public/japanese_data.json"),
-          element: <PrivateRoute><Content></Content></PrivateRoute>
+          element: <PrivateRoute><Lessons></Lessons></PrivateRoute>
         }
       ]
     }
@@ -65,6 +67,7 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
       <RouterProvider router={router}></RouterProvider>
+      <ToastContainer position='top-center' autoClose={3000}></ToastContainer>
     </AuthProvider>
   </StrictMode>,
 )

@@ -1,5 +1,5 @@
 
-const Content = () => {
+const Lessons = () => {
     return (
         <div>
             
@@ -7,4 +7,4 @@ const Content = () => {
     );
 };
 
-export default Content;
+export default Lessons;
